@@ -1,8 +1,10 @@
 {
+  "version": "v1.3",
+  "captured": "2026-11-26 11:43",
   "log": [
     {
       "file": "01-p-pricing.png",
-      "desc": "개인 · 상품 페이지 (Free Trial / Basic / Plus)",
+      "desc": "개인 · 상품 페이지 (2028년 1월 출시 예정 안내 · Free Trial / Basic / Plus)",
       "url": "#/pricing"
     },
     {
@@ -67,7 +69,7 @@
     },
     {
       "file": "14-p-charge-card.png",
-      "desc": "개인 · 추가 충전 (카드 · 카드사별 한도표)",
+      "desc": "개인 · 추가 충전 (카드 · 카드사별 한도표 · 6개월 검토안 표시)",
       "url": "#/charge"
     },
     {
@@ -107,7 +109,7 @@
     },
     {
       "file": "22-p-credits-used.png",
-      "desc": "개인 · 작업 실행 후 차감 (만료 임박분부터)",
+      "desc": "개인 · 작업 실행 후 차감 (실측 원가 × 1,500원 × 1.30 · 만료 임박분부터)",
       "url": "#/credits"
     },
     {
@@ -142,7 +144,7 @@
     },
     {
       "file": "29-t-pricing.png",
-      "desc": "팀 · 상품 페이지 (Team Pro / Business · 충전팩 표 · Enterprise)",
+      "desc": "팀 · 상품 페이지 (기본 탭 · Team Pro / Business · 충전팩 표 · 6개월 검토안 · Enterprise)",
       "url": "#/pricing"
     },
     {
@@ -157,17 +159,17 @@
     },
     {
       "file": "32-t-team.png",
-      "desc": "팀 · 팀 워크스페이스 만들기",
+      "desc": "팀 · 팀 워크스페이스 만들기 (최대 10명)",
       "url": "#/team"
     },
     {
       "file": "33-t-checkout.png",
-      "desc": "팀 · 결제 확인 (공급가 100,000 + VAT 10,000)",
+      "desc": "팀 · 결제 확인 (공급가 100,000 + VAT 10,000 · 크레딧 없음)",
       "url": "#/checkout"
     },
     {
       "file": "34-t-billing-corp.png",
-      "desc": "팀 · 모의 결제창 법인카드 (사업자등록번호)",
+      "desc": "팀 · 모의 정기결제창 법인카드 (사업자등록번호)",
       "url": "#/checkout"
     },
     {
@@ -177,7 +179,7 @@
     },
     {
       "file": "36-t-charge-110-hyundai.png",
-      "desc": "팀 · 110만 원 팩 + 현대카드 → 한도 초과 경고 (9곳 중 3곳 가능)",
+      "desc": "팀 · 110만 원 팩 + 현대카드 → 한도 초과 경고 (9곳 중 3곳 가능 · 6개월 검토안 표시)",
       "url": "#/charge"
     },
     {
@@ -197,12 +199,12 @@
     },
     {
       "file": "40-t-credits.png",
-      "desc": "팀 · 크레딧 화면 (충전분 원장, 구독·충전 결제 내역)",
+      "desc": "팀 · 크레딧 화면 (충전분 원장 · 실측 기준 차감 예시 · 구독·충전 결제 내역)",
       "url": "#/credits"
     },
     {
       "file": "41-e-pricing.png",
-      "desc": "엔터프라이즈 · 상품 페이지 (현행 300만 원 → 330만C)",
+      "desc": "엔터프라이즈 · 상품 페이지 (보너스 협의 · 현행 계약 10%)",
       "url": "#/pricing"
     },
     {
@@ -237,7 +239,7 @@
     },
     {
       "file": "48-legal-terms.png",
-      "desc": "이용약관 (개인·팀) 초안",
+      "desc": "이용약관 (개인·팀) 초안 (출시 순서 · 6개월 검토안 반영)",
       "url": "#/terms"
     },
     {
@@ -247,17 +249,17 @@
     },
     {
       "file": "50-m-pricing.png",
-      "desc": "모바일 · 개인 상품 페이지",
+      "desc": "모바일 · 팀 상품 페이지",
       "url": "#/pricing"
     },
     {
       "file": "51-m-checkout.png",
-      "desc": "모바일 · 결제 확인",
+      "desc": "모바일 · 팀 결제 확인",
       "url": "#/checkout"
     },
     {
       "file": "52-m-charge.png",
-      "desc": "모바일 · 추가 충전",
+      "desc": "모바일 · 팀 크레딧 충전",
       "url": "#/charge"
     }
   ],

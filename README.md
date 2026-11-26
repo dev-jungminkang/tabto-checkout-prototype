@@ -8,7 +8,7 @@ tabto.ai에 붙일 결제·상품 페이지 흐름을 확인하는 클릭 프로
   - 2027년 1월 팀 우선 출시, 개인은 2028년 1월 출시 → 상품 페이지 기본 탭은 팀, 개인 탭은 "2028 출시 예정"으로 표시
   - 충전 유효기간 6개월은 경영관리본부 승인 전 검토안
   - 차감 예시는 실측 원가 × 1,500원/USD × 1.30
-- `captures/` 캡처는 v1.1 기준이라 다시 찍어야 해요
+- `captures/`, `captures-2x/` 캡처 52장은 2026.11.26 v1.3 화면 기준이에요 (플로우 정리: `captures/FLOWS.md`)
 
 ## 로컬에서 보기
 
@@ -24,7 +24,16 @@ python3 -m http.server 5178
 npx vercel deploy --prod --yes
 ```
 
-`captures`, `captures-2x` 폴더는 `.vercelignore`로 배포에서 빠져요.
+`captures`, `captures-2x`, `tools` 폴더는 `.vercelignore`로 배포에서 빠져요.
+
+## 캡처 다시 찍기
+
+로컬 서버를 띄운 뒤 Playwright(Python)와 설치된 Chrome으로 52장을 1배·2배로 찍어요.
+
+```bash
+pip install playwright
+python tools/capture_flows.py . http://127.0.0.1:5178
+```
 
 ## 파일
 

@@ -1,0 +1,267 @@
+{
+  "log": [
+    {
+      "file": "01-p-pricing.png",
+      "desc": "개인 · 상품 페이지 (Free Trial / Basic / Plus)",
+      "url": "#/pricing"
+    },
+    {
+      "file": "02-p-signup.png",
+      "desc": "개인 · 회원가입 폼 (약관 동의 포함)",
+      "url": "#/signup"
+    },
+    {
+      "file": "03-p-signup-error.png",
+      "desc": "개인 · 회원가입 입력 오류 표시",
+      "url": "#/signup"
+    },
+    {
+      "file": "04-p-verify.png",
+      "desc": "개인 · 이메일 인증 안내",
+      "url": "#/signup"
+    },
+    {
+      "file": "05-p-activate.png",
+      "desc": "개인 · 계정 활성화 (바로 활성화 방식)",
+      "url": "#/activate"
+    },
+    {
+      "file": "06-p-checkout.png",
+      "desc": "개인 · 결제 내용 확인과 자동결제 동의",
+      "url": "#/checkout"
+    },
+    {
+      "file": "07-p-checkout-error.png",
+      "desc": "개인 · 필수 동의 누락 오류",
+      "url": "#/checkout"
+    },
+    {
+      "file": "08-p-billing-1.png",
+      "desc": "개인 · 모의 토스 정기결제창 ① 카드 정보",
+      "url": "#/checkout"
+    },
+    {
+      "file": "09-p-billing-1-error.png",
+      "desc": "개인 · 카드 정보 입력 오류",
+      "url": "#/checkout"
+    },
+    {
+      "file": "10-p-billing-2.png",
+      "desc": "개인 · 모의 결제창 ② 본인 확인",
+      "url": "#/checkout"
+    },
+    {
+      "file": "11-p-billing-3.png",
+      "desc": "개인 · 모의 결제창 ③ 빌링키 발급·첫 결제 처리 중",
+      "url": "#/checkout"
+    },
+    {
+      "file": "12-p-billing-4.png",
+      "desc": "개인 · 모의 결제창 ④ 카드 등록·첫 결제 완료",
+      "url": "#/checkout"
+    },
+    {
+      "file": "13-p-subscribed.png",
+      "desc": "개인 · 구독 시작 완료 (20,000C 지급)",
+      "url": "#/subscribed"
+    },
+    {
+      "file": "14-p-charge-card.png",
+      "desc": "개인 · 추가 충전 (카드 · 카드사별 한도표)",
+      "url": "#/charge"
+    },
+    {
+      "file": "15-p-charge-easy.png",
+      "desc": "개인 · 추가 충전 (간편결제)",
+      "url": "#/charge"
+    },
+    {
+      "file": "16-p-charge-bank.png",
+      "desc": "개인 · 추가 충전 (계좌이체)",
+      "url": "#/charge"
+    },
+    {
+      "file": "17-p-charge-agree-error.png",
+      "desc": "개인 · 충전 필수 동의 누락",
+      "url": "#/charge"
+    },
+    {
+      "file": "18-p-pay-1.png",
+      "desc": "개인 · 모의 토스 단건 결제창 (카드사 인증 안내)",
+      "url": "#/charge"
+    },
+    {
+      "file": "19-p-pay-2.png",
+      "desc": "개인 · 단건 결제 승인 중",
+      "url": "#/charge"
+    },
+    {
+      "file": "20-p-paid.png",
+      "desc": "개인 · 충전 완료 (6개월 유효)",
+      "url": "#/paid"
+    },
+    {
+      "file": "21-p-credits.png",
+      "desc": "개인 · 크레딧 화면 (구독분·충전분 원장, 결제 내역)",
+      "url": "#/credits"
+    },
+    {
+      "file": "22-p-credits-used.png",
+      "desc": "개인 · 작업 실행 후 차감 (만료 임박분부터)",
+      "url": "#/credits"
+    },
+    {
+      "file": "23-p-credits-cancel.png",
+      "desc": "개인 · 구독 해지 예약",
+      "url": "#/credits"
+    },
+    {
+      "file": "24-f-activate.png",
+      "desc": "Free Trial · 이메일 인증 후 바로 활성화 + 5,000C 지급",
+      "url": "#/activate"
+    },
+    {
+      "file": "25-f-credits.png",
+      "desc": "Free Trial · 크레딧 화면 (체험 14일, 충전 버튼 잠김)",
+      "url": "#/credits"
+    },
+    {
+      "file": "26-f-charge-blocked.png",
+      "desc": "Free Trial · 체험 중 충전 불가 안내",
+      "url": "#/charge"
+    },
+    {
+      "file": "27-b-pricing.png",
+      "desc": "결제 후 활성화 방식 · 무료 체험 버튼 잠김",
+      "url": "#/pricing"
+    },
+    {
+      "file": "28-b-activate.png",
+      "desc": "결제 후 활성화 방식 · 결제 대기 상태",
+      "url": "#/activate"
+    },
+    {
+      "file": "29-t-pricing.png",
+      "desc": "팀 · 상품 페이지 (Team Pro / Business · 충전팩 표 · Enterprise)",
+      "url": "#/pricing"
+    },
+    {
+      "file": "30-t-activate.png",
+      "desc": "팀 · 계정 활성화",
+      "url": "#/activate"
+    },
+    {
+      "file": "31-t-team-error.png",
+      "desc": "팀 · 팀 이름 누락 오류",
+      "url": "#/team"
+    },
+    {
+      "file": "32-t-team.png",
+      "desc": "팀 · 팀 워크스페이스 만들기",
+      "url": "#/team"
+    },
+    {
+      "file": "33-t-checkout.png",
+      "desc": "팀 · 결제 확인 (공급가 100,000 + VAT 10,000)",
+      "url": "#/checkout"
+    },
+    {
+      "file": "34-t-billing-corp.png",
+      "desc": "팀 · 모의 결제창 법인카드 (사업자등록번호)",
+      "url": "#/checkout"
+    },
+    {
+      "file": "35-t-subscribed.png",
+      "desc": "팀 · 구독 시작 (크레딧 없음 → 충전 유도)",
+      "url": "#/subscribed"
+    },
+    {
+      "file": "36-t-charge-110-hyundai.png",
+      "desc": "팀 · 110만 원 팩 + 현대카드 → 한도 초과 경고 (9곳 중 3곳 가능)",
+      "url": "#/charge"
+    },
+    {
+      "file": "37-t-pay-declined.png",
+      "desc": "팀 · 모의 결제창 결제 거절 (카드사 환금성 한도)",
+      "url": "#/charge"
+    },
+    {
+      "file": "38-t-charge-bankpay.png",
+      "desc": "팀 · 뱅크페이로 변경 → 결제 가능",
+      "url": "#/charge"
+    },
+    {
+      "file": "39-t-paid.png",
+      "desc": "팀 · 1,050,000C 충전 완료",
+      "url": "#/paid"
+    },
+    {
+      "file": "40-t-credits.png",
+      "desc": "팀 · 크레딧 화면 (충전분 원장, 구독·충전 결제 내역)",
+      "url": "#/credits"
+    },
+    {
+      "file": "41-e-pricing.png",
+      "desc": "엔터프라이즈 · 상품 페이지 (현행 300만 원 → 330만C)",
+      "url": "#/pricing"
+    },
+    {
+      "file": "42-e-inquiry.png",
+      "desc": "엔터프라이즈 · 도입 문의 폼",
+      "url": "#/enterprise"
+    },
+    {
+      "file": "43-e-inquiry-error.png",
+      "desc": "엔터프라이즈 · 문의 폼 입력 오류",
+      "url": "#/enterprise"
+    },
+    {
+      "file": "44-e-quote.png",
+      "desc": "엔터프라이즈 · 견적 확인과 세금계산서 정보",
+      "url": "#/ent-quote"
+    },
+    {
+      "file": "45-e-invoice.png",
+      "desc": "엔터프라이즈 · 청구서와 계좌이체 안내",
+      "url": "#/ent-invoice"
+    },
+    {
+      "file": "46-e-paid.png",
+      "desc": "엔터프라이즈 · 입금 확인 후 계약 크레딧 지급",
+      "url": "#/ent-invoice"
+    },
+    {
+      "file": "47-e-credits.png",
+      "desc": "엔터프라이즈 · 크레딧 화면 (계약 크레딧 6개월)",
+      "url": "#/credits"
+    },
+    {
+      "file": "48-legal-terms.png",
+      "desc": "이용약관 (개인·팀) 초안",
+      "url": "#/terms"
+    },
+    {
+      "file": "49-legal-refund.png",
+      "desc": "환불 및 취소 정책 (개인·팀) 초안",
+      "url": "#/refund"
+    },
+    {
+      "file": "50-m-pricing.png",
+      "desc": "모바일 · 개인 상품 페이지",
+      "url": "#/pricing"
+    },
+    {
+      "file": "51-m-checkout.png",
+      "desc": "모바일 · 결제 확인",
+      "url": "#/checkout"
+    },
+    {
+      "file": "52-m-charge.png",
+      "desc": "모바일 · 추가 충전",
+      "url": "#/charge"
+    }
+  ],
+  "errors": [
+    "Failed to load resource: the server responded with a status of 404 (File not found)"
+  ]
+}

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>TabTo 결제 프로토타입</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;600&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="stylesheet" href="styles.css?v=7" />
+</head>
+<body>
+  <header class="hdr">
+    <a class="logo" href="#/pricing">TabTo</a>
+    <nav class="nav">
+      <a href="#/pricing" onclick="return false" class="dim">Home</a>
+      <a href="#/pricing" onclick="return false" class="dim">Showcase</a>
+      <a href="#/pricing" class="on">Pricing</a>
+      <a href="#/pricing" onclick="return false" class="dim">Tutorials</a>
+    </nav>
+    <div class="hdr-r" id="hdr-r"></div>
+  </header>
+
+  <main id="app"></main>
+
+  <footer class="ftr">
+    <div>Copyright © GIANTSTEP. All Rights Reserved</div>
+    <div>(주)자이언트스텝 (GIANTSTEP) | 대표 : 하승봉, 이지철</div>
+    <div>주소 : 서울특별시 강남구 학동로37길 8 (논현동) | 전화 : 02-549-0005</div>
+    <div>사업자등록번호 : 211-88-13952 | 통신판매업 신고번호 : 2024-서울강남-06943</div>
+    <div>이메일 : admin@tabto.ai | 호스팅서비스 제공자 : Amazon Web Services Korea LLC</div>
+    <div class="links">
+      <a href="#/terms">이용약관 (개인·팀) <span class="draft">초안</span></a>
+      <a href="#/refund">환불 및 취소 정책 (개인·팀) <span class="draft">초안</span></a>
+      <a href="https://tabto.ai/privacy" target="_blank" rel="noopener">개인정보 처리방침</a>
+      <a href="https://tabto.ai/terms" target="_blank" rel="noopener">기업용 서비스 이용약관 (현행)</a>
+      <a href="https://tabto.ai/refund-policy" target="_blank" rel="noopener">기업용 환불 및 취소 정책 (현행)</a>
+      <a href="https://tabto.ai/contact" target="_blank" rel="noopener">기업 서비스 문의</a>
+    </div>
+  </footer>
+
+  <div class="sim" id="sim"></div>
+  <div id="modal"></div>
+
+  <script src="app.js?v=7"></script>
+</body>
+</html>

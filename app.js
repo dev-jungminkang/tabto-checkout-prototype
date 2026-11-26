@@ -8,7 +8,11 @@ const addMonths = (d, m) => { const x = new Date(d); const day = x.getDate(); x.
 const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
 const ymd = (d) => { const x = new Date(d); return `${x.getFullYear()}.${String(x.getMonth() + 1).padStart(2, '0')}.${String(x.getDate()).padStart(2, '0')}`; };
 
-/* ───────── 상품 (TabTo 사업계획서 v1.1, 2026.11) ───────── */
+/* ───────── 상품 (TabTo 사업계획서 v1.3, 2026.11) ─────────
+   2027.1 Team 우선 출시 · Personal은 2028.1 출시. 충전 6개월은 경영관리본부 승인 전 검토안.
+   차감: 공급사 모델 원가 × 1.30 · API 환율 가정 1,500원/USD. */
+const PLAN_VER = 'v1.3';
+const PERSONAL_LAUNCH = '2028년 1월';
 const PLANS = {
   free: { id: 'free', who: 'p', name: 'Free Trial', price: 0, credits: 5000, line: '핵심 제작 경험 체험', feats: ['5,000C 지급 · 14일', '핵심 제작 기능 체험', '별도 충전 불가'], review: '5,000C · 14일은 검토안' },
   basic: { id: 'basic', who: 'p', name: 'Personal Basic', price: 29000, credits: 20000, line: '개인 창작자의 정기 제작', feats: ['매월 20,000C', '남은 크레딧은 다음 결제일에 소멸', '별도 충전 1원/C + VAT'] },
@@ -54,7 +58,7 @@ const BANKS = [
 
 /* ───────── 상태 ───────── */
 const DEF = () => ({
-  persona: 'p', act: 'a', plan: null, user: null, verified: false, active: false, team: null, sub: null,
+  persona: 't', act: 'a', plan: null, user: null, verified: false, active: false, team: null, sub: null,
   grants: [], usage: [], orders: [], used: {}, ent: null,
   charge: { pack: 0, method: 'card', issuer: '국민', easy: 'toss', bank: 'quick' },
 });
@@ -92,7 +96,8 @@ function prog(at) {
 }
 
 /* ───────── 1. 상품 페이지 ───────── */
-const personaSeg = () => `<div class="seg"><button class="${S.persona === 'p' ? 'on' : ''}" data-act="persona" data-v="p">개인</button><button class="${S.persona === 't' ? 'on' : ''}" data-act="persona" data-v="t">팀</button><button class="${S.persona === 'e' ? 'on' : ''}" data-act="persona" data-v="e">엔터프라이즈</button></div>`;
+const personaSeg = () => `<div class="seg"><button class="${S.persona === 't' ? 'on' : ''}" data-act="persona" data-v="t">팀</button><button class="${S.persona === 'e' ? 'on' : ''}" data-act="persona" data-v="e">엔터프라이즈</button><button class="${S.persona === 'p' ? 'on' : ''}" data-act="persona" data-v="p">개인 · 2028</button></div>`;
+const SIX_MONTH_NOTE = '6개월 (경영관리본부 승인 전 검토안)';
 
 function vPricing() {
   if (isEnt()) return vEntPricing();
@@ -122,12 +127,13 @@ function vPricing() {
     <h1 class="h1">Tab To Create.<br>작업 규모에 맞게 고르세요.</h1>
     <p class="lead">${t ? '팀 구독료는 플랫폼 이용료예요. AI 제작에 쓰는 크레딧은 필요한 만큼 따로 충전해요.' : '매월 크레딧이 들어오는 개인 구독이에요. 모자라면 1원 = 1C로 추가 충전할 수 있어요.'}</p>
     <div class="mt24">${personaSeg()}</div>
+    ${t ? '' : `<div class="panel mt24" style="border-color:var(--amber)"><div class="between" style="flex-wrap:wrap;gap:8px"><div><div class="h3">개인 플랜은 ${PERSONAL_LAUNCH} 출시 예정이에요</div><div class="small muted">2027년에는 팀 플랜만 판매해요. 아래는 출시 예정 구성이고, 가격·조건은 바뀔 수 있어요.</div></div><span class="badge b-a">2027년 판매 안 함</span></div></div>`}
     <div class="grid g3 mt32">${cards}</div>
     ${t ? `
     <div class="grid g2 mt32">
       <div class="panel">
         <div class="h3">팀 크레딧 충전</div>
-        <p class="small muted" style="margin:0 0 12px">1C = 1원 (VAT 별도) · 충전일로부터 6개월 동안 사용 · 팀 구독 중에만 충전 가능</p>
+        <p class="small muted" style="margin:0 0 12px">1C = 1원 (VAT 별도) · 유효기간 ${SIX_MONTH_NOTE} · 팀 구독 중에만 충전 가능</p>
         <div class="scroll-x"><table class="tbl"><thead><tr><th>구매 공급가</th><th>결제액 (VAT 포함)</th><th class="r">지급 크레딧</th><th class="r">보너스</th></tr></thead><tbody>${packRows}
         <tr><td>100만 원 초과</td><td colspan="3" class="muted">별도 견적 · 세금계산서 계약</td></tr></tbody></table></div>
       </div>
@@ -138,9 +144,10 @@ function vPricing() {
       </div>
     </div>` : `
     <div class="panel mt32"><div class="between" style="flex-wrap:wrap"><div><div class="h3">추가 충전</div><div class="small muted">Basic · Plus 구독 중에 1원/C + VAT로 충전 · 보너스 없음 · 유효기간 6개월 (검토 중)</div></div><span class="badge b-a">최소 금액·단위 미정</span></div></div>`}
+    ${t ? '<p class="tiny dim mt16">추가 좌석과 플랜별 세부 기능 범위는 확정 전 검토사항이에요.</p>' : ''}
     <div class="mt24">${memo(t
-      ? '팀 구독은 <b>빌링 MID</b>(카드 정기결제, D+4 정산), 충전은 <b>환금성 MID</b>(단건 결제, M+4 정산)로 나뉘어요. 110만 원 패키지는 카드사 9곳 중 3곳(국민·비씨·삼성)에서만 결제돼요.'
-      : '토스 빌링 조건: ① 크레딧 외 기능 제공 ② 미사용 크레딧 이월 불가 ③ 연 단위 결제 금지 → <b>연간 결제 할인은 둘 수 없어요.</b>')}</div>
+      ? `팀 구독은 <b>빌링 MID</b>(카드 정기결제, D+4 정산), 충전은 <b>환금성 MID</b>(단건 결제, M+4 정산)로 나뉘어요. 110만 원 패키지는 카드사 9곳 중 3곳(국민·비씨·삼성)에서만 결제돼요.<br>사업계획 ${PLAN_VER}은 조직당 <b>월 충전 Pro 200만 · Business 900만 원</b>을 가정해요. 셀프 충전 상한(110만 원)을 넘으니 충전 매출 대부분은 <b>견적·세금계산서 경로</b>로 들어와요. 손익은 팀 충전 전액에 보너스 5%를 가정했어요.`
+      : `사업계획 ${PLAN_VER}: 개인 플랜은 <b>${PERSONAL_LAUNCH} 출시</b>, 2027년 개인 매출 없음. Free Trial 조건과 개인 추가 충전 최소 단위는 미확정이에요.<br>토스 빌링 조건: ① 크레딧 외 기능 제공 ② 미사용 크레딧 이월 불가 ③ 연 단위 결제 금지 → <b>연간 결제 할인은 둘 수 없어요.</b>`)}</div>
   </section>`;
 }
 
@@ -389,6 +396,7 @@ function vCharge() {
     <div class="eyebrow">CREDITS</div>
     <h1 class="h2 mt8">${isTeam() ? `${esc(S.team?.name || '팀')} 크레딧 충전` : '크레딧 추가 충전'}</h1>
     <p class="lead">충전한 크레딧은 6개월 동안 쓸 수 있어요. 현재 잔액 ${fmt(balance())}C</p>
+    <p class="tiny" style="color:var(--amber);margin:4px 0 0">유효기간 6개월은 경영관리본부 승인 전 검토안이에요 (사업계획 ${PLAN_VER} 1-7).</p>
     <div class="grid mt32" style="grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));align-items:start">
       <div class="grid" style="gap:28px">
         <div><div class="small muted" style="margin-bottom:10px">1. 충전 금액</div><div class="opts">${packOpts}</div>
@@ -414,7 +422,7 @@ function vCharge() {
       <p class="small muted" style="margin:4px 0 12px">토스페이먼츠 안내 기준 · 실제 승인 여부는 카드사 운영 기준에 따라 달라질 수 있어요. 결제를 반복하면 누적 한도가 반영돼요.</p>
       <div class="scroll-x"><table class="tbl"><thead><tr><th>카드사</th><th>건당 한도</th><th>월 누적 한도</th><th class="r">이번 달 사용</th><th class="r">결제</th></tr></thead><tbody>${cardTable}</tbody></table></div>
     </div>
-    <div class="mt16">${memo('환금성 MID · 단건 결제 · M+4 월 정산 · 정산 한도 월 5,000만 원. <b>지금 코드</b>는 크레딧 팩을 등록 카드(빌링키)로 결제해요. 토스 조건상 충전은 이 단건 결제창으로 옮겨야 하고, 토스 키도 MID별로 두 벌이 필요해요.')}</div>
+    <div class="mt16">${memo(`환금성 MID · 단건 결제 · M+4 월 정산 · 정산 한도 월 5,000만 원. <b>지금 코드</b>는 크레딧 팩을 등록 카드(빌링키)로 결제해요. 토스 조건상 충전은 이 단건 결제창으로 옮겨야 하고, 토스 키도 MID별로 두 벌이 필요해요.<br>사업계획 ${PLAN_VER} 1-7: 6개월은 고객 혜택으로 제안하되 <b>경영관리·회계·법무·PG 검토 전에는 확정 정책으로 외부 공지하지 않아요.</b> 부담이 크면 “기본 3개월 + 기업 계약 6개월” 안을 비교해요.`)}</div>
   </section>`;
 }
 
@@ -469,10 +477,11 @@ function vPaid() {
 }
 
 /* ───────── 8. 크레딧 반영과 사용처 ───────── */
+/* 예시 차감량 = 실측 원가(USD) × 1,500원 × 1.30 (사업계획 v1.3 가정)
+   나노바나나 프로 1K $0.15 → 293C · 씨댄스 2.5 720p 5초 $1.155 → 2,252C (탭토 실측, 11/16~24) */
 const TASKS = [
-  { n: '이미지 생성 · 1장', c: 120 },
-  { n: '영상 생성 · 5초 1080p', c: 1300 },
-  { n: '영상 생성 · 10초 4K', c: 6800 },
+  { n: '이미지 생성 · 나노바나나 프로 1K · 1장', c: 293 },
+  { n: '영상 생성 · 씨댄스 2.5 720p · 5초', c: 2252 },
 ];
 function spend(cost, name) {
   if (balance() < cost) return false;
@@ -532,7 +541,7 @@ function vCredits() {
       <div class="panel"><div class="h3">사용 내역</div><div class="scroll-x"><table class="tbl mt8"><thead><tr><th>작업</th><th class="r">크레딧</th><th>차감된 곳</th></tr></thead><tbody>${useRows}</tbody></table></div></div>
     </div>
     <div class="panel mt24"><div class="h3">결제 내역 · 영수증</div><div class="scroll-x"><table class="tbl mt8"><thead><tr><th>날짜</th><th>내용</th><th>결제 수단</th><th class="r">금액</th></tr></thead><tbody>${orderRows}</tbody></table></div></div>
-    <div class="mt16">${memo('구독 크레딧은 다음 결제일에 소멸, 충전 크레딧은 6개월 유지. <b>지금 코드</b>는 구독 크레딧도 6개월 유지라 바꿔야 해요. 크레딧 장부·차감·사용 내역은 기존 기능을 쓰고, 차감 단가(원가 × 1.30)는 관리자 설정값으로 맞추면 돼요.')}</div>
+    <div class="mt16">${memo(`구독 크레딧은 다음 결제일에 소멸, 충전 크레딧은 6개월 유지. <b>지금 코드</b>는 구독 크레딧도 6개월 유지라 바꿔야 해요. 크레딧 장부·차감·사용 내역은 기존 기능을 쓰고, 차감 단가(원가 × 1.30)는 관리자 설정값으로 맞추면 돼요.<br>예시 차감량은 탭토 실측 원가 × 1,500원/USD × 1.30 (사업계획 ${PLAN_VER} 가정)이에요. <b>지금 운영 설정은 1,500원 × 1.2</b>라서 1.30으로 바꾸려면 설정 변경이 필요해요.`)}</div>
   </section>`;
 }
 
@@ -563,7 +572,7 @@ function vEntPricing() {
         <span class="badge b-o top">계약형</span>
         <div><div class="h3">Enterprise</div><div class="small muted">선불 크레딧 · 구독 · 전용 모델 · 기술지원</div></div>
         <div class="price">별도 견적</div>
-        <div class="tiny dim">예: 300만 원 선납 시 330만 크레딧 · 6개월 (현행 조건)</div>
+        <div class="tiny dim">예: 300만 원 선납 시 330만 크레딧 · 6개월 (현행 계약 조건 · 신규 보너스율은 협의)</div>
         <ul class="feat">
           <li>대량 크레딧 선납 (100만 원 초과)</li>
           <li>팀 · 프로젝트 · 멤버별 크레딧 한도</li>
@@ -580,14 +589,14 @@ function vEntPricing() {
         <div class="scroll-x"><table class="tbl mt8"><thead><tr><th></th><th>팀 셀프 충전</th><th>엔터프라이즈</th></tr></thead><tbody>
           <tr><td class="muted">금액</td><td>11만 ~ 110만 원</td><td>100만 원 초과</td></tr>
           <tr><td class="muted">결제</td><td>카드 · 간편결제 · 계좌이체 (PG)</td><td>계좌이체 (세금계산서)</td></tr>
-          <tr><td class="muted">보너스</td><td>0 / 2 / 5%</td><td>10% (현행)</td></tr>
+          <tr><td class="muted">보너스</td><td>0 / 2 / 5%</td><td>협의 (현행 계약 10%)</td></tr>
           <tr><td class="muted">결제 수수료</td><td>3.4% / 1.8%</td><td>없음</td></tr>
           <tr><td class="muted">카드사 한도</td><td>적용</td><td>해당 없음</td></tr>
-          <tr><td class="muted">유효기간</td><td>6개월</td><td>6개월 (계약으로 조정 가능)</td></tr>
+          <tr><td class="muted">유효기간</td><td>6개월 (검토안)</td><td>6개월 (계약으로 조정 가능)</td></tr>
         </tbody></table></div>
       </div>
     </div>
-    <div class="mt24">${memo('엔터프라이즈는 <b>토스 PG를 거치지 않아요.</b> 현행 기업용 약관(견적 → 세금계산서 → 계좌이체 선납)을 그대로 써요. 300만 원을 PG로 받으면 카드 9곳 중 3곳만 가능하고 수수료 10.2만 원(카드)이 들어서 계약 경로가 유리해요.')}</div>
+    <div class="mt24">${memo(`엔터프라이즈는 <b>토스 PG를 거치지 않아요.</b> 현행 기업용 약관(견적 → 세금계산서 → 계좌이체 선납)을 그대로 써요. 300만 원을 PG로 받으면 카드 9곳 중 3곳만 가능하고 수수료 10.2만 원(카드)이 들어서 계약 경로가 유리해요.<br>사업계획 ${PLAN_VER}: 100만 원 초과 대량 구매의 <b>최종 보너스율은 미결정</b>이고, 손익은 팀 충전 전액 <b>5%</b>로 계산했어요. 현행 계약 10%를 그대로 쓰면 2027년 이익률(2.8%)이 계획보다 낮아져요.`)}</div>
   </section>`;
 }
 
@@ -715,9 +724,10 @@ function vTerms() {
     </table>
     <h3>상품별 조항</h3>
     <ul>
+      <li>출시 순서 (사업계획 ${PLAN_VER}): 팀 2027년 1월 · 개인 <span class="draft">${PERSONAL_LAUNCH}</span> → 1차 약관은 팀 조항 중심, 개인 조항은 출시 전 추가 가능</li>
       <li>개인 구독: Personal Basic 29,000원 / Plus 79,000원 (VAT 포함), 월 크레딧 20,000C / 70,000C</li>
       <li>팀 구독: Team Pro 100,000원 / Business 300,000원 (VAT 별도), 최대 10명 / 30명, 크레딧 미포함</li>
-      <li>충전: 1C = 1원 (VAT 별도), 유효기간 6개월, 팀 구독 중에만 충전 · 개인은 Basic·Plus 구독 중에만 충전</li>
+      <li>충전: 1C = 1원 (VAT 별도), 유효기간 <span class="draft">6개월 (경영관리본부 승인 전 검토안 · 대안: 기본 3개월 + 기업 계약 6개월)</span>, 팀 구독 중에만 충전 · 개인은 Basic·Plus 구독 중에만 충전</li>
       <li>연 단위 결제 없음 (토스 빌링 조건)</li>
       <li>무료 체험: <span class="draft">5,000C · 14일 검토 중 · 자동 유료 전환 여부 미정</span></li>
     </ul>
@@ -777,7 +787,7 @@ function renderHeader() {
 function renderSim() {
   const names = isEnt() ? ['상품', '도입 문의', '견적 확인', '청구·입금', '크레딧'] : ['상품', '가입', '활성화', '팀', '결제 동의', '카드 등록', '충전', '크레딧'];
   $('#sim').innerHTML = `<span class="tag">프로토타입 · 실제 결제 없음</span>
-    <span class="lab">구매자</span><span class="sg"><button class="${S.persona === 'p' ? 'on' : ''}" data-act="sim-persona" data-v="p">개인</button><button class="${S.persona === 't' ? 'on' : ''}" data-act="sim-persona" data-v="t">팀</button><button class="${S.persona === 'e' ? 'on' : ''}" data-act="sim-persona" data-v="e">엔터프라이즈</button></span>
+    <span class="lab">구매자</span><span class="sg"><button class="${S.persona === 't' ? 'on' : ''}" data-act="sim-persona" data-v="t">팀</button><button class="${S.persona === 'e' ? 'on' : ''}" data-act="sim-persona" data-v="e">엔터프라이즈</button><button class="${S.persona === 'p' ? 'on' : ''}" data-act="sim-persona" data-v="p">개인 · 2028</button></span>
     ${isEnt() ? '' : `<span class="lab">가입 후</span><span class="sg"><button class="${S.act === 'a' ? 'on' : ''}" data-act="sim-act" data-v="a">바로 활성화</button><button class="${S.act === 'b' ? 'on' : ''}" data-act="sim-act" data-v="b">결제 후 활성화</button></span>`}
     <span class="steps">${names.map((n, i) => `<button class="${UI.step === i + 1 ? 'on' : ''} ${i === 3 && S.persona === 'p' ? 'na' : ''}" data-act="jump" data-n="${i + 1}" title="${i + 1}. ${n}">${i + 1}</button>`).join('')}</span>
     <button class="reset" data-act="reset">처음부터</button>`;
